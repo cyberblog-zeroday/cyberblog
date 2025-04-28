@@ -1,0 +1,136 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+
+{% block css %}               
+<link rel="stylesheet" href="{% static 'css/base/base.css' %}?v={% now 'U' %}">
+<link rel="stylesheet" href="{% static 'css/articulo_detail/articulo_detail_css.css' %}?v={% now 'U' %}">
+
+{% endblock %}
+
+{% block contenido %}
+<main class="container">
+    <aside class="sidebar sidebar-left ">
+        <h2>Publicidad</h2>
+        {% for ad in articulo.side_ads.all|dictsort:"orden" %}
+        {% if ad.position == 'left' %}
+          <div class="ad-banner ad-banner-vertical">
+            {% with formato=ad.proveedor_publicidad.get_banner_ad %}
+              {% if formato %}
+              {% if fragmento.proveedor_publicidad %}
+              <div class="ad-banner ad-banner-horizontal my-5 p-4">
+                  {% with codigo=fragmento.proveedor_publicidad.formatopublicidad_set.first %}
+                      {% if codigo %}
+                          <div class="ad-code">
+                              {{ codigo.codigo|safe }}
+                          </div>
+                      {% else %}
+                          <p class="text-danger">Código de publicidad no configurado</p>
+                      {% endif %}
+                  {% endwith %}
+              </div>
+          {% endif %}
+                <h3 class="ad-title">{{ ad.titulo }}</h3>
+                <div class="ad-content">
+                  {{ formato.codigo|safe }}
+                </div>
+                <span class="ad-cta">Descubre Más</span>
+              {% else %}
+                <p>Publicidad no disponible</p>
+              {% endif %}
+            {% endwith %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </aside>
+
+    <section class="single-post-content">
+        <h2>{{ object.title }}</h2>
+        <p class="post-meta">Publicado el {{ articulo.creacion|date:"d F Y" }} por Admin</p>
+        
+        {% if articulo.image %}
+        <div class="featured-image">
+            <img src="{{ articulo.image.url }}" alt="{{ object.title }}" class="img-fluid">
+        </div>
+        {% endif %}
+    
+        <div class="text-content"> <!-- Envuelve todo el contenido textual -->
+            <p class="lead">{{ object.descripcion }}</p>
+    
+            {% for fragmento in articulo.fragmentos.all|dictsort:"orden" %}
+                {% if fragmento.texto %}
+                    {{ fragmento.texto|linebreaks }}
+                {% endif %}
+    
+              
+                {% if fragmento.imagen %}
+                <figure class="image-block">
+                    <img src="{{ fragmento.imagen.imagen.url }}" class="img-fluid rounded"
+                        alt="{{ fragmento.imagen.descripcion|default:'Imagen del artículo' }}" loading="lazy"
+                        width=100%>
+                    {% if fragmento.imagen.descripcion %}
+                    <figcaption>{{ fragmento.imagen.descripcion }}</figcaption>
+                    {% endif %}
+                </figure>
+                {% endif %}
+
+                {% if fragmento.proveedor_publicidad %}
+                <div class="ad-banner ad-banner-horizontal my-5 p-4">
+                    {% with codigo=fragmento.proveedor_publicidad.formatopublicidad_set.first %}
+                        {% if codigo %}
+                            <div class="ad-code">
+                                {{ codigo.codigo|safe }}
+                            </div>
+                        {% else %}
+                            <p class="text-danger">Código de publicidad no configurado</p>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            {% endif %}
+            {% endfor %}
+
+            <footer class="article-footer">
+                {% if articulo.modificacion %}
+                <div class="update-info">
+                    Actualizado: {{ articulo.modificacion|date:"d F Y H:i" }}
+                </div>
+                {% endif %}
+                <a href="{% url 'blog:lista-articulos' %}" class="back-button">
+                    &larr; Volver al blog
+                </a>
+            </footer>
+        </div>
+    
+        <a href="{% url 'blog:lista-articulos' %}" class="back-link">&laquo; Volver al Blog</a>
+    </section>
+
+    <aside class="sidebar sidebar-right">
+        <h2>Publicidad</h2>
+        {% for ad in articulo.side_ads.all|dictsort:"orden" %}
+        {% if ad.position == 'right' %}
+        <div class="ad-banner ad-banner-square">
+            {% with formato=ad.proveedor_publicidad.get_banner_ad %}
+            {% if formato %}
+            <p> {{ formato.codigo|safe }}
+            </p>
+            <span>Descubre Más</span>
+            {% endif %}
+            {% endwith %}
+    
+        </div>
+    
+    
+    
+        {% endif %}
+        {% endfor %}
+    
+    </aside>
+</main>
+{% endblock %}
+
+<script src="{% static 'js/base/base.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+

@@ -1,0 +1,39 @@
+<div class="nav-container ">
+  <nav class="navbar">
+    <a href="https://h4ckerpro.com" class="logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+      </svg>
+      CyberBlog
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="{% url 'home_app:home-view' %}">Inicio</a></li>
+      <li><a href="{% url 'blog:lista-articulos' %}">Blog</a></li>
+
+      {% if user.is_authenticated %}
+      <li>
+        <a href="{% url 'users_app:logout' %}">Cerrar sesión</a>
+      </li>
+      {% else %}
+      <li><a href="{% url 'users_app:user-login' %}">Login</a></li>
+      <li><a href="{% url 'users_app:user-register' %}">register</a></li>
+
+      {% endif %}
+      
+    </ul>
+
+    <button class="theme-toggle" id="themeToggle">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="theme-icon">
+        <path class="sun-icon"
+          d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M12 6a6 6 0 100 12 6 6 0 000-12z" />
+        <path class="moon-icon" style="display:none" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+      </svg>
+      <span class="theme-text">Tema</span>
+    </button>
+
+    <button class="hamburger" id="hamburger">
+      ☰
+    </button>
+  </nav>
+</div>

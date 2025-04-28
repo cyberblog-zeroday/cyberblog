@@ -1,0 +1,58 @@
+{% extends "blog/base.html" %}
+
+{% block contenido %}
+    
+<main class="container">
+
+
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <h2>Contacto</h2>
+            <p>¿Tienes alguna pregunta o sugerencia? ¡Contáctanos!</p>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}
+
+<!-- Scripts adicionales para publicidad -->
+<script>
+    // Recargar los scripts de publicidad dinámicos
+    document.addEventListener('DOMContentLoaded', function() {
+        const ads = document.querySelectorAll('.ad-code script');
+        ads.forEach(script => {
+            const newScript = document.createElement('script');
+            newScript.text = script.text;
+            script.parentNode.replaceChild(newScript, script);
+        });
+    });
+</script>
+
+
+<!--
+
+            <div class="ad-banner ad-banner-horizontal">
+                <p>¡Anuncio Horizontal dentro del post!</p>
+                <span>¡Oferta Exclusiva!</span>
+            </div>
+
+-->
+
+

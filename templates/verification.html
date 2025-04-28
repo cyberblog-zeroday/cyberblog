@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'users/verification.css' %}?v={{ timestamp }}">
+<link rel="stylesheet" href="{% static 'css/base/base.css' %}?v={{ timestamp }}">
+
+{% endblock %}
+    <title>{% block title %}
+        Verificacion de email
+    {% endblock %}</title>
+
+    {% block contenido %}
+<div class="centrado">
+    <div >
+        <form method="post">
+            {% csrf_token %}
+            <div  class="verification-container">
+                <h1>Verificación de Código</h1>
+                <p>Hemos enviado un código de verificación de 6 dígitos a tu correo electrónico. Por favor, ingrésalo a continuación:</p>
+                
+                <div class="code-inputs ">
+                <div>
+                    {{ form.as_p}}
+                </div>
+                </div>
+    
+                <button type="submit">Verificar Código</button>
+                <div class="timer">Tiempo restante: <span id="countdown">05:00</span></div>
+                
+                <a href="#" class="resend-link" id="resendLink">¿No recibiste el código? Reenviar</a>
+              </div>
+        {{request.responce}}
+        
+        </form>
+    </div>
+</div>
+    {% endblock %}
+{% block js-script %}
+    <script src="{% static 'js/basejs/users/verification.js' %}"></script>
+{% endblock %}

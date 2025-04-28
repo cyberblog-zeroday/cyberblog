@@ -1,0 +1,66 @@
+{% extends "base/base.html" %}
+{% load static %}  
+{% load i18n %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/articulo_list_css/articulo_list_css.css' %}?v={% now 'U' %}">
+<link rel="stylesheet" href="{% static 'css/base/base.css' %}?v={% now 'U' %}">
+
+{% endblock %}
+
+<head><base href="/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H4ckerPro - Blog</title>
+
+    </head>
+    
+        {% block contenido %}
+                
+        <div class="blog-container dark-theme">
+            <header class="blog-header">
+              <h1>Blog de Ciberseguridad</h1>
+              <p>Últimas noticias y artículos sobre seguridad informática</p>
+            </header>
+        
+            <main class="blog-grid">
+                {% for articulo in object_list %}
+                    
+                <article class="blog-card" > <!-- onclick="window.location.href='article.html?id=1'" -->
+                    <a href="{% url 'blog:detalle-articulo' articulo.slug %}"><h2>{{ articulo.title }}</h2></a>
+                    <div class="blog-meta">
+                        <span>Por: Admin</span>
+                  <span>{{ articulo.creacion }}/span>
+                </div>
+                <div class="blog-content">
+                    <p>{{articulo.descripcion}}</p>
+                </div>
+                <div class="blog-footer">
+                     <!-- 
+                  <button class="like-button">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                 
+                    <span  class="likes-count">42</span>     
+                  </button>
+                  <div class="tags">
+                    <span class="tag">Ransomware</span>
+                    <span class="tag">Seguridad</span>
+                  </div>  
+                -->
+                </div>
+            </article>
+            {% endfor %}
+        
+
+            </main>
+          </div>
+
+    
+        {% endblock %}
+
+      {% block add_scripst %}
+        <script src="{% static 'js/articulo_list/articulo_list_js.js' %}"></script>
+      {% endblock %}
+    
+    </html>

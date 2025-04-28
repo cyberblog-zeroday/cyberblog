@@ -1,0 +1,333 @@
+
+
+
+
+
+a {
+    text-decoration: none;
+
+}
+
+
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  padding-top: 40px;
+  gap: 20px; /* Espacio entre columnas */
+}
+
+.blog-content {
+  flex: 3; /* Ocupa más espacio que los sidebars */
+  background: var(--container-bg);  /*Use variable */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--box-shadow-light); /* Use variable */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sidebar {
+  flex: 1; /* Ocupa menos espacio */
+  padding: 15px;
+  background: var(--sidebar-bg); /* Use variable */
+  border-radius: 5px;
+  box-shadow: 0 0 5px var(--box-shadow-lighter); /* Use variable */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  color: var(--sidebar-heading); /* Use variable */
+  border-bottom: 1px solid var(--border-color); /* Use variable */
+  padding-bottom: 5px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.blog-post {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed var(--dashed-border-color); /* Use variable */
+  transition: border-color 0.3s ease;
+}
+
+.blog-post:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Styles for the single post view */
+.single-post-content {
+  flex: 3; /* Ocupa más espacio que los sidebars */
+  background: var(--container-bg); /* Use variable */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--box-shadow-light); /* Use variable */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.single-post-content h2 {
+  color: var(--sidebar-heading); /* Use variable */
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--border-color); /* Use variable */
+  padding-bottom: 10px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.single-post-content .post-meta {
+  font-size: 0.9em;
+  color: var(--dark); /* Adjusted for better contrast in dark mode */
+  opacity: 0.7; /* Slightly less prominent */
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.single-post-content .post-body p {
+  margin-bottom: 1.5em; /* More spacing between paragraphs */
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 8px 15px;
+  background: var(--link-bg); /* Use variable */
+  color: var(--link-text); /* Use variable */
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.back-link:hover {
+  background: var(--link-hover-bg); /* Use variable */
+}
+
+.blog-post h3 {
+  color: var(--text-color); /* Use variable */
+  margin-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.post-meta {
+  font-size: 0.8em;
+  color: var(--text-color); /* Adjusted for better contrast */
+  opacity: 0.7;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.blog-post a {
+  display: inline-block;
+  background: var(--link-bg); /* Use variable */
+  color: var(--link-text); /* Use variable */
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.blog-post a:hover {
+  background: var(--link-hover-bg); /* Use variable */
+}
+
+/* --- Estilos de Banners de Publicidad --- */
+.ad-banner {
+  background-color: var(--ad-bg); /* Use variable */
+  border: 1px solid var(--ad-border); /* Use variable */
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.ad-banner p {
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  color: var(--ad-text); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.ad-banner span {
+  display: block;
+  font-size: 0.9em;
+  color: var(--ad-subtext); /* Use variable */
+  transition: color 0.3s ease;
+}
+
+.ad-banner-vertical {
+  min-height: 200px; /* Altura mínima para banners verticales */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ad-banner-horizontal {
+  min-height: 80px; /* Altura mínima para banners horizontales */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Centra el texto */
+  margin-top: 20px;
+  margin-bottom: 30px; /* Más espacio después del banner horizontal */
+}
+
+.ad-banner-square {
+   min-height: 150px; /* Altura mínima para banners cuadrados */
+   min-width: 150px; /* Ancho mínimo */
+   max-width: 250px; /* Ancho máximo opcional */
+   margin-left: auto;
+   margin-right: auto;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 900px) { /* Adjust breakpoint for switch */
+   .theme-switch-wrapper {
+      position: static; /* Reset position */
+      transform: none;
+      justify-content: center; /* Center on smaller screens */
+      padding-top: 10px; /* Add some space */
+  }
+   header h1 {
+      padding-bottom: 0; /* Reduce padding */
+  }
+   header nav {
+      margin-bottom: 10px;
+   }
+}
+
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+  }
+  .sidebar {
+      margin-bottom: 20px;
+  }
+  .sidebar-left { order: 2; }
+  .blog-content { order: 1; }
+  .sidebar-right { order: 3; }
+}
+
+
+/* ultimas agregados */
+
+.single-post-content {
+  color: var(--text-color); /* Texto oscuro */
+  background: var(--container-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  line-height: 1.7;
+}
+
+.single-post-content h2 {
+  color: #e0e0e0;      /* Títulos más oscuros */
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--primary);
+}
+
+.post-meta {
+  color: #e0e0e0 !important; /* Gris para metadatos */
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.text-content {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.featured-image {
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+}
+
+/* --- Estilos de Banners --- */
+.ad-banner {
+  background: var(--ad-bg) !important;
+  border: 2px solid var(--ad-border) !important;
+  color: var(--ad-text) !important;
+  padding: 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  border-color: aqua;
+}
+
+.ad-banner p {
+  color: var(--ad-text) !important;
+  font-size: 1.1rem !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+.ad-banner span {
+  color: var(--primary) !important;
+  font-size: 0.9rem !important;
+}
+
+/* Efecto hover para banners */
+.ad-banner:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 255, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+
+/* Banners verticales (ajusta altura) */
+.ad-banner-vertical {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+/* Banners cuadrados */
+.ad-banner-square {
+  aspect-ratio: 1/1; /* Mantiene relación cuadrada */
+
+}
+
+/* Banners horizontales */
+.ad-banner-horizontal {
+  grid-column: 1 / -1; /* Ocupa todo el ancho */
+  padding: 2rem !important;
+}
+
+
+
+.single-post-content{
+  position: relative;
+  border-color: var(--primary);
+}
+
+.single-post-content h2{
+  color: var(--primary)
+}
+
+.sidebar-right{
+  position: relative;
+  border-color: var(--primary);
+
+}
+
+.sidebar-left{
+  position: relative;
+  border-color: var(--primary);
+
+}
+
+

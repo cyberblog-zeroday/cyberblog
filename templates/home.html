@@ -1,0 +1,387 @@
+{% extends 'base/base.html' %}
+  {% load static %}
+  {% block css %}
+
+  <link rel="stylesheet" href="{% static 'css/home/home.css' %}?v={{ timestamp }}">
+  
+
+  {% endblock %}
+  <title>
+    {% block title %}
+    H4ckerPro - Inicio
+    {% endblock %}
+  </title>
+  
+   </head>
+
+  {% block contenido %}
+    
+<!-- En tu template de Django (ej: index.html) -->
+<section class="cyber-intro">
+  <div class="glitch-container">
+      <h1 class="cyber-title glitch" data-text="CyberBlog">
+          <span class="scanline"></span>
+          CyberBlog
+      </h1>
+      
+      <p class="terminal-text">
+          <span class="prompt">$</span> Inicializando sistema de conocimiento digital...
+          <br>
+          <span class="prompt">$</span> Cargando artículos sobre:<br>
+          <span class="hack-text">[</span> 
+          <span class="keyword">Security</span> 
+          <span class="hack-text">|</span> 
+          <span class="keyword">AI</span> 
+          <span class="hack-text">|</span> 
+          <span class="keyword">Crypto</span> 
+          <span class="hack-text">|</span> 
+          <span class="keyword">FutureTech</span> 
+          <span class="hack-text">]</span>
+      </p>
+
+      {% if user.is_authenticated %}
+      
+      <span class="hack-text"><h2>Bienvenido {{ request.user }}</h2></span> 
+
+{% else %}
+<a href="{% url 'users_app:user-login' %}" >
+  <button class="cyber-button">
+      <span class="cyber-button-text">ACCEDER AL SISTEMA</span>
+      <span class="cyber-button-lights">
+          <span class="light"></span>
+          <span class="light"></span>
+      </span>
+  </button></a>
+{% endif %}
+  </div>
+</section>
+
+<style>
+/* En tu archivo CSS */
+.cyber-intro {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #000 30%, #00172e);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.glitch-container {
+  position: relative;
+  text-align: center;
+}
+
+.cyber-title {
+  font-family: 'Courier New', monospace;
+  font-size: 4rem;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
+  position: relative;
+  margin-bottom: 2rem;
+  animation: glitch 3s infinite;
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      transparent 50%,
+      rgba(0, 255, 255, 0.1) 51%,
+      transparent 51%);
+  animation: scan 5s linear infinite;
+}
+
+.terminal-text {
+  color: #0f0;
+  font-family: 'Consolas', monospace;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  text-align: left;
+  border-left: 3px solid #0f0;
+  padding-left: 1rem;
+}
+
+.prompt {
+  color: #0ff;
+  margin-right: 0.5rem;
+}
+
+.keyword {
+  color: #ff0;
+  text-shadow: 0 0 8px #ff0;
+}
+
+.hack-text {
+  color: #0f0;
+}
+
+.cyber-button {
+  background: #000;
+  border: 2px solid #0ff;
+  color: #0ff;
+  padding: 1rem 2rem;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 2rem;
+}
+
+.cyber-button:hover {
+  background: #0ff;
+  color: #000;
+  box-shadow: 0 0 20px #0ff;
+}
+
+.cyber-button-lights {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 1px solid #0ff;
+  pointer-events: none;
+  animation: pulse 1.5s infinite;
+}
+
+/* Animaciones */
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%) }
+  100% { transform: translateY(100%) }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5 }
+  50% { opacity: 1 }
+  100% { opacity: 0.5 }
+}
+
+/* Modo claro */
+body.light-theme .cyber-intro {
+  background: linear-gradient(45deg, #fff 30%, #e6f7ff);
+}
+
+body.light-theme .cyber-title {
+  color: #0066cc;
+  text-shadow: 0 0 10px #0066cc;
+}
+
+body.light-theme .terminal-text {
+  color: #009900;
+}
+
+body.light-theme .cyber-button {
+  border-color: #0066cc;
+  color: #0066cc;
+}
+
+body.light-theme .cyber-button:hover {
+  background: #0066cc;
+  color: #fff;
+}
+</style>
+
+<!-- 
+  
+  <section class="hero dark-theme">
+    
+    <div class="hero-content">
+      {% for h in home %}
+      <h1>{{ h.title }}</h1>  <-- Itera sobre cada objeto 'home' 
+      {% endfor %}    
+      <p>
+
+        {% for h in home %}
+          {{ h.description }}
+        {% endfor %}
+      </p>
+      <a href="{% url 'users_app:user-register' %}" class="cta-btn">Comienza Ahora</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>{{ titleSection.title }}</h2>
+    <div class="features-grid">
+      {% for sect in section %}
+      <div class="feature-card">
+        <h3>{{ sect.title }}</h3>
+        <p>{{ sect.content }}</p>
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </section>
+  <section class="stats">
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-number">5000+</div>
+        <p>Estudiantes Activos</p>
+
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">50+</div>
+        <p>Cursos Disponibles</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">98%</div>
+        <p>Tasa de Satisfacción</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24/7</div>
+        <p>Soporte Técnico</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>Lo que dicen nuestros estudiantes</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="testimonial-content">
+          "Los cursos de H4ckerPro han transformado mi carrera. El contenido práctico y los laboratorios me dieron la confianza necesaria para conseguir mi primer trabajo en ciberseguridad."
+        </div>
+        <div class="testimonial-author">
+          <div class="author-avatar">MA</div>
+          <div class="author-info">
+            <h4>Miguel Ángel</h4>
+            <p>Analista de Seguridad</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <div class="testimonial-content">
+          "La calidad de los instructores y el soporte de la comunidad es incomparable. He aprendido más en 6 meses que en años de estudio autodidacta."
+        </div>
+        <div class="testimonial-author">
+          <div class="author-avatar">LC</div>
+          <div class="author-info">
+            <h4>Laura Castillo</h4>
+            <p>Pentester</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="testimonial-content">
+          "Los laboratorios prácticos son excepcionales. Poder practicar en entornos reales hace toda la diferencia. Totalmente recomendado para cualquier nivel."
+        </div>
+        <div class="testimonial-author">
+          <div class="author-avatar">DR</div>
+          <div class="author-info">
+            <h4>David Rodríguez</h4>
+            <p>Consultor de Seguridad</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+-->
+
+  <section class="cta">
+    <h2>¿Listo para comenzar tu viaje en ciberseguridad?</h2>
+    <p>Únete a miles de estudiantes que ya están transformando su carrera</p>
+    <a href="{% url 'users_app:user-register' %}" class="cta-btn">Regístrate Ahora</a>
+  </section>
+
+  {% endblock %}
+
+  <script>
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.navbar ul');
+  
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+  
+  document.querySelectorAll('.navbar a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+    });
+  });
+  
+  // Animate stats numbers
+  const stats = document.querySelectorAll('.stat-number');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = parseInt(entry.target.innerText);
+        let count = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+          count += increment;
+          if (count >= target) {
+            entry.target.innerText = target + (entry.target.innerText.includes('+') ? '+' : '');
+            clearInterval(timer);
+          } else {
+            entry.target.innerText = Math.ceil(count) + (entry.target.innerText.includes('+') ? '+' : '');
+          }
+        }, 20);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  stats.forEach(stat => observer.observe(stat));
+  
+  // Animate testimonials
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  
+  const testimonialObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  testimonialCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.6s ease-out';
+    testimonialObserver.observe(card);
+  });
+  </script>
+  
