@@ -6,7 +6,7 @@ class Articulo(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=200, unique=True)
     descripcion = models.CharField(max_length=255)
-    image = models.FileField(upload_to="img", storage=None, max_length=100, )
+    image = models.FileField(upload_to="img", storage=None, max_length=100,null=True, blank=True )
     creacion = models.DateTimeField(auto_now_add=True)
     modificacion = models.DateTimeField(auto_now=True)
     
